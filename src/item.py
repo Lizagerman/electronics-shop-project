@@ -19,16 +19,19 @@ class InstantiateCSVError(Exception):
         return f'{self.message} - {str(self.base_message)}'
 
 
-class Item(ABC):
+class TItem:
+    pass
+
+
+class Item:
     """
     Класс для представления товара в магазине.
     """
-    pay_rate = 1.
-    all = []
+    pay_rate: float = 1.0
+    all: list[TItem] = []
 
-    # path = os.path.join('..', 'electronics-shop-project_AV', 'scr', 'items.csv')
 
-    def __init__(self, name: str, price: float, quantity: int) -> None:
+    def __init__(self, name: str, price: int | float, quantity: int):
         """
         Создание экземпляра класса item.
 
@@ -36,12 +39,11 @@ class Item(ABC):
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        self.verify_name(name)
 
         self.__name = name
         self.price = price
         self.quantity = quantity
-        super().__init__()
+        self.all.append(self)
 
     @classmethod
     def verify_name(cls, name):
@@ -70,13 +72,15 @@ class Item(ABC):
         return int(float(str_number))
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self.__name
 
     @name.setter
-    def name(self, name):
-        self.verify_name(name)
-        self.__name = name
+    def name(self, value: str) -> None:
+        max_length: int = 10
+        if len(value) > 10:
+            raise Exception(...)
+        self.__name = value 
 
     def calculate_total_price(self) -> float:
         """
