@@ -8,7 +8,8 @@ path = os.path.join('..', 'src', 'items.csv')  # путь к файлу
 class InstantiateCSVError(Exception):
     """Класс исключения при повреждении файла"""
 
-    def __init__(self, message, base_message=None):
+    def __init__(self, name, message, base_message=None):
+        self.name = name
         self.base_message = base_message
         self.message = message
 
@@ -79,7 +80,7 @@ class Item:
     def name(self, value: str) -> None:
         max_length: int = 10
         if len(value) > 10:
-            raise Exception(...)
+            raise Exception('Название не должно быть больше 10 символов')
         self.__name = value 
 
     def calculate_total_price(self) -> float:
@@ -93,7 +94,7 @@ class Item:
     def apply_discount(self) -> float:
         """
         Применяет установленную скидку для конкретного товара.
-        :return:  стоимость товара с скидкой.
+        :return:  Стоимость товара со скидкой.
         """
         self.price *= self.pay_rate
         return self.pay_rate
