@@ -11,7 +11,7 @@ class InstantiateCSVError(Exception):
     def __init__(self, name, message, base_message=None):
         self.name = name
         self.base_message = base_message
-        self.message = message
+        self.message = message 
 
     def __str__(self):
         if self.base_message is None:
@@ -21,6 +21,10 @@ class InstantiateCSVError(Exception):
 
 
 class TItem:
+    pass
+
+
+class Product:
     pass
 
 
@@ -52,25 +56,25 @@ class Item:
 #        if len(name) >= 15:
 #            raise Exception("Длина наименования товара превышает 10 символов.")
 
-    @classmethod
-    def instantiate_from_csv(cls):
-        cls.all = []
-        try:
-            with open(path, encoding='windows-1251', newline='') as csvfile:
-                reader = csv.DictReader(csvfile)
-                cls.all = [cls((row['name']), float(row['price']), int(row['quantity'])) for row in reader]
+#    @classmethod
+#    def instantiate_from_csv(cls):
+#        cls.all = []
+#        try:
+#            with open(path, encoding='windows-1251', newline='') as csvfile:
+#                reader = csv.DictReader(csvfile)
+#                cls.all = [cls((row['name']), float(row['price']), int(row['quantity'])) for row in reader]
+#
+#        except FileNotFoundError:
+#            print('_Отсутствует файл item.csv_')
+#
+#        except KeyError as e:
+#            print(InstantiateCSVError("_Файл item.csv поврежден_", e))
+#        print(cls.all)
+#        return cls.all
 
-        except FileNotFoundError:
-            print('_Отсутствует файл item.csv_')
-
-        except KeyError as e:
-            print(InstantiateCSVError("_Файл item.csv поврежден_", e))
-        print(cls.all)
-        return cls.all
-
-    @staticmethod
-    def string_to_number(str_number):
-        return int(float(str_number))
+#    @staticmethod
+#    def string_to_number(str_number):
+#        return int(float(str_number))
 
     @property
     def name(self) -> str:
@@ -80,7 +84,7 @@ class Item:
     def name(self, value: str) -> None:
         max_length: int = 10
         if len(value) > 10:
-            raise Exception('Название не должно быть больше 10 символов')
+            raise Exception(f'Название не должно быть больше {max_length} символов')
         self.__name = value 
 
     def calculate_total_price(self) -> float:
@@ -111,3 +115,15 @@ class Item:
             return self.quantity + other.quantity
         else:
             return print("Складывать нельзя")
+
+
+    if __name__ == ' __main__':
+        product = Product(name, price, quantity)
+
+# TestCase#1 name
+    assert product == 'Phone'
+
+# TestCase#2 price
+    product.price()
+    assert 60000 * name.raise_coef == product.pay
+    assert product.pay == 100000

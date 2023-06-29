@@ -26,3 +26,4 @@ def test_change_lang():
 def test_other_language():
     with pytest.raises(AttributeError):
         kb.language = 'CH'
+
