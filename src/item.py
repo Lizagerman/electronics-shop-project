@@ -46,11 +46,11 @@ class Item:
         self.quantity = quantity
         self.all.append(self)
 
-    @classmethod
-    def verify_name(cls, name):
-        """Проверяет, что длина наименования товара не больше 10 символов"""
-        if len(name) >= 15:
-            raise Exception("Длина наименования товара превышает 10 символов.")
+#    @classmethod
+#    def verify_name(cls, name):
+#        """Проверяет, что длина наименования товара не больше 10 символов"""
+#        if len(name) >= 15:
+#            raise Exception("Длина наименования товара превышает 10 символов.")
 
     @classmethod
     def instantiate_from_csv(cls):
