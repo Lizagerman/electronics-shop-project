@@ -50,31 +50,6 @@ class Item:
         self.quantity = quantity
         self.all.append(self)
 
-#    @classmethod
-#    def verify_name(cls, name):
-#        """Проверяет, что длина наименования товара не больше 10 символов"""
-#        if len(name) >= 15:
-#            raise Exception("Длина наименования товара превышает 10 символов.")
-
-#    @classmethod
-#    def instantiate_from_csv(cls):
-#        cls.all = []
-#        try:
-#            with open(path, encoding='windows-1251', newline='') as csvfile:
-#                reader = csv.DictReader(csvfile)
-#                cls.all = [cls((row['name']), float(row['price']), int(row['quantity'])) for row in reader]
-#
-#        except FileNotFoundError:
-#            print('_Отсутствует файл item.csv_')
-#
-#        except KeyError as e:
-#            print(InstantiateCSVError("_Файл item.csv поврежден_", e))
-#        print(cls.all)
-#        return cls.all
-
-#    @staticmethod
-#    def string_to_number(str_number):
-#        return int(float(str_number))
 
     @property
     def name(self) -> str:
@@ -121,7 +96,7 @@ class Item:
         product = Product(name, price, quantity)
 
 # TestCase#1 name
-    assert product == 'Phone'
+    assert Product == 'Phone'
 
 # TestCase#2 price
     product.price()

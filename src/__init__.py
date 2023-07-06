@@ -1,0 +1,2 @@
+def phone():
+    return None

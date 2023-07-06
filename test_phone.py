@@ -2,25 +2,31 @@ import pytest
 
 from src.phone import Phone
 
-phone1 = Phone("iPhone 14", 120_000, 5, 2)
+
+@pytest.fixture
+def phone1():
+    return Phone("iPhone 14", 120_000, 5, 2)
 
 
-def test_item_init():
-    assert phone1.name == 'iPhone 14'
-    assert phone1.price == 120000
+def test_phone_init(phone1):
+    assert phone1.name == "iPhone 14"
+    assert phone1.price == 120_000
     assert phone1.quantity == 5
     assert phone1.number_of_sim == 2
+    with pytest.raises(ValueError, match='Количество физических SIM-карт должно быть целым числом больше нуля.'):
+        phone1.number_of_sim = 0
 
 
-def test_repr():
-    assert repr(phone1) == "Phone('iPhone 14', 120000, 5, 2)"
+def test_number_of_sim(phone1):
+    phone1.number_of_sim = 2
+    assert phone1.number_of_sim == 2
+    with pytest.raises(ValueError, match='Количество физических SIM-карт должно быть целым числом больше нуля.'):
+        phone1.number_of_sim = 0
 
 
-def test_verify_sim():
-    with pytest.raises(ValueError):
-        phone1.verify_sim(0)
+def test_phone_str(phone1):
+    assert phone1.__str__() == "iPhone 14"
 
 
-def test_number_of_sim():
-    phone2 = Phone("iPhone 14", 120_000, 5, 1)
-    phone2.number_of_sim = 1
+def test_phone_repr(phone1):
+    assert phone1.__repr__() == "Phone('iPhone 14', 120000, 5, 2)"
