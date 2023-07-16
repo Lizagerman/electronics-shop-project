@@ -19,3 +19,7 @@ class LanguageChange:
 
 class Keyboard(Item, LanguageChange):
     pass
+
+
+class KeyBoard:
+    pass
